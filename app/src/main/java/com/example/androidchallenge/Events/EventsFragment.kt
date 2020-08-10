@@ -1,4 +1,4 @@
-package com.example.androidchallenge.MainScreen.Fragments.Characters
+package com.example.androidchallenge.Events
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,13 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.androidchallenge.R
 
-class CharactersFragment : Fragment() {
+class EventsFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_characters, container, false)
+        return inflater.inflate(R.layout.fragment_events, container, false)
     }
+
 }

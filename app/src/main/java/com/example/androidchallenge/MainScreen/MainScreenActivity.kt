@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.example.androidchallenge.MainScreen.Fragments.Characters.CharactersFragment
-import com.example.androidchallenge.MainScreen.Fragments.Events.EventsFragment
+import com.example.androidchallenge.Characters.CharactersFragment
+import com.example.androidchallenge.Events.EventsFragment
 import com.example.androidchallenge.R
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_characters.*
