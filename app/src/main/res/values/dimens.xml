@@ -2,5 +2,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <dimen name="toolbarTitle">20sp</dimen>
+    <dimen name="heroRecyclerTitle">24sp</dimen>
+    <dimen name="heroRecyclerDescription">24sp</dimen>
+    <dimen name="heroRecyclerImageSize">120dp</dimen>
+
 
 </resources>

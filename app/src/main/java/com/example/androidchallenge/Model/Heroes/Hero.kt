@@ -1,6 +1,6 @@
-package com.example.androidchallenge.Model.Characters
+package com.example.androidchallenge.Model.Heroes
 
-data class Result(
+data class Hero(
     val comics: Appearences = Appearences(),
     val description: String = "",
     val events: Appearences = Appearences(),

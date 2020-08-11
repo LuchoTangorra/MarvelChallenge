@@ -16,12 +16,21 @@
         <item name="backgroundColor">@color/toolbar</item>
     </style>
 
-    <style name="ToolbarTitle">
-        <item name="android:layout_gravity">center</item>
+    <style name="textType">
         <item name="fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="ToolbarTitle" parent="textType">
+        <item name="android:layout_gravity">center</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/toolbarTitle</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="HeroTitle" parent="textType">
+        <item name="android:layout_gravity">left</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/heroRecyclerTitle</item>
     </style>
 
 </resources>

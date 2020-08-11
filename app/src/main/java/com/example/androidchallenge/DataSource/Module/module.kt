@@ -1,8 +1,8 @@
 package com.example.androidchallenge.DataSource.Module
 
-import com.example.androidchallenge.Characters.DataSource.CharactersViewModel
+import com.example.androidchallenge.Heroes.DataSource.HeroesViewModel
 import com.example.androidchallenge.DataSource.API.MarvelAPI
-import com.example.androidchallenge.Characters.DataSource.MarvelRepository
+import com.example.androidchallenge.Heroes.DataSource.MarvelRepository
 import com.example.androidchallenge.Utils.Constants.marvelAPIurl
 import okhttp3.OkHttpClient
 import org.koin.android.viewmodel.dsl.viewModel
@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit
 
 val appModules = module {
 
-    viewModel { CharactersViewModel(get()) }
+    viewModel { HeroesViewModel(get()) }
 
     single { provideOkHttpClient() }
     single { provideRetrofit(get()) }

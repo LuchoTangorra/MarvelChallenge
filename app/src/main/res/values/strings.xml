@@ -4,7 +4,7 @@
     <string name="facebook_application_id" translatable="false">1176958136003126</string>
     <string name="facebook_login_protocol_scheme" translatable="false">fb1176958136003126</string>
 
-    <string name="charactersTitle">Personajes</string>
+    <string name="heroesTitle">Personajes</string>
     <string name="eventsTitle">Eventos</string>
     <string name="marvelChallenge">Marvel Challenge</string>
 

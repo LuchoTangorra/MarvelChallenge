@@ -8,20 +8,20 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.example.androidchallenge.Characters.CharactersFragment
+import com.example.androidchallenge.Heroes.HeroesFragment
 import com.example.androidchallenge.Events.EventsFragment
 import com.example.androidchallenge.R
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.activity_characters.*
+import kotlinx.android.synthetic.main.activity_main_screen.*
 
 class MainScreenActivity : AppCompatActivity() {
 
-    val charactersIcons = ArrayList<Int>(listOf(R.drawable.ic_superhero, R.drawable.ic_superhero_colored))
+    val heroesIcons = ArrayList<Int>(listOf(R.drawable.ic_superhero, R.drawable.ic_superhero_colored))
     val eventsIcons = ArrayList<Int>(listOf(R.drawable.ic_superhero, R.drawable.ic_superhero_colored))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_characters)
+        setContentView(R.layout.activity_main_screen)
 
         setupToolbar()
         setupPageAdapter()
@@ -45,11 +45,11 @@ class MainScreenActivity : AppCompatActivity() {
                 super.onPageSelected(position)
                 when (position) {
                     0 -> {
-                        pageIndicator.getTabAt(0)?.setIcon(charactersIcons[1])
+                        pageIndicator.getTabAt(0)?.setIcon(heroesIcons[1])
                         pageIndicator.getTabAt(1)?.setIcon(eventsIcons[0])
                     }
                     else -> {
-                        pageIndicator.getTabAt(0)?.setIcon(charactersIcons[0])
+                        pageIndicator.getTabAt(0)?.setIcon(heroesIcons[0])
                         pageIndicator.getTabAt(1)?.setIcon(eventsIcons[1])
                     }
                 }
@@ -59,12 +59,12 @@ class MainScreenActivity : AppCompatActivity() {
     }
 
     private fun setTabLayoutTitle() {
-        pageIndicator.getTabAt(0)?.text = getText(R.string.charactersTitle)
+        pageIndicator.getTabAt(0)?.text = getText(R.string.heroesTitle)
         pageIndicator.getTabAt(1)?.text = getText(R.string.eventsTitle)
     }
 
     private fun setupPageIndicatorIcons() {
-        val imageResId = ArrayList<Int>(listOf(charactersIcons[0], eventsIcons[0]))
+        val imageResId = ArrayList<Int>(listOf(heroesIcons[0], eventsIcons[0]))
         imageResId.forEachIndexed { i, resId ->
             pageIndicator.getTabAt(i)?.setIcon(resId)
         }
@@ -77,7 +77,7 @@ class MainScreenActivity : AppCompatActivity() {
 
         override fun createFragment(position: Int): Fragment {
             return when (position) {
-                0 -> CharactersFragment()
+                0 -> HeroesFragment()
                 else -> EventsFragment()
             }
         }

@@ -1,4 +1,4 @@
-package com.example.androidchallenge.Model.Characters
+package com.example.androidchallenge.Model.Heroes
 
 data class Appearences(
     val available: Int = 0,
