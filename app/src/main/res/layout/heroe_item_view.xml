@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="hero"
             type="com.example.androidchallenge.model.heroes.Hero" />
@@ -11,11 +12,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/recyclerMargin"
+        android:layout_marginTop="@dimen/recyclerMargin"
+        android:elevation="4dp">
 
         <ImageView
             android:id="@+id/heroImage"
-            app:imageThumbnail="@{hero.thumbnail}"
+            imageThumbnail="@{hero.thumbnail}"
             android:layout_width="@dimen/heroRecyclerImageSize"
             android:layout_height="@dimen/heroRecyclerImageSize"
             app:layout_constraintBottom_toBottomOf="parent"
