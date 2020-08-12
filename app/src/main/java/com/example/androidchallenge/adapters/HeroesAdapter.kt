@@ -6,15 +6,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.androidchallenge.base.BaseAdapter
 import com.example.androidchallenge.model.heroes.Hero
 import com.example.androidchallenge.R
-import com.example.androidchallenge.databinding.HeroeItemViewBinding
+import com.example.androidchallenge.databinding.HeroItemViewBinding
 
 class HeroesAdapter : BaseAdapter<Hero, HeroesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroesViewHolder =
         HeroesViewHolder(
-            HeroeItemViewBinding.bind(
+            HeroItemViewBinding.bind(
                 LayoutInflater.from(parent.context).inflate(
-                    R.layout.heroe_item_view,
+                    R.layout.hero_item_view,
                     parent,
                     false
                 )
@@ -27,7 +27,7 @@ class HeroesAdapter : BaseAdapter<Hero, HeroesViewHolder>() {
 }
 
 class HeroesViewHolder(
-    private val binding: HeroeItemViewBinding,
+    private val binding: HeroItemViewBinding,
     private val onClickListener: ((Hero) -> Unit)?
 ) : RecyclerView.ViewHolder(binding.root) {
 

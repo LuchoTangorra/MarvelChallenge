@@ -1,19 +1,25 @@
 package com.example.androidchallenge.heroes
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.androidchallenge.adapters.HeroesAdapter
-import com.example.androidchallenge.heroes.dataSource.HeroesViewModel
 import com.example.androidchallenge.R
+import com.example.androidchallenge.adapters.HeroesAdapter
 import com.example.androidchallenge.databinding.FragmentHeroesBinding
+import com.example.androidchallenge.heroes.dataSource.HeroesViewModel
+import com.example.androidchallenge.heroDetails.HeroDetailsActivity
+import com.example.androidchallenge.utils.Constants
+import com.example.androidchallenge.utils.Utils
+import com.example.androidchallenge.utils.decorators.MarginItemDecoration
 import org.koin.android.viewmodel.ext.android.viewModel
+
 
 class HeroesFragment : Fragment() {
 
@@ -36,22 +42,30 @@ class HeroesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupHeroessRecycler()
-        setupObservers()
+        setupHeroes()
     }
 
-    private fun setupObservers() {
+    private fun setupHeroes() {
+        binding.heroesRecyclerView.apply {
+            layoutManager =
+                LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+
+            addItemDecoration(
+                MarginItemDecoration(
+                    resources.getDimension(R.dimen.recyclerMargin).toInt()
+                )
+            )
+
+            adapter = heroesAdapter
+        }
+        heroesAdapter.onClickListener = {
+            val i = Intent(requireContext(), HeroDetailsActivity::class.java)
+            i.putExtra(Constants.hero, Utils.serializeToJson(it))
+            startActivity(i)
+        }
         viewModel.getHeroes()
         viewModel.heroes.observe(requireActivity(), Observer {
             heroesAdapter.update(it.data.heroes)
         })
-    }
-
-    private fun setupHeroessRecycler() {
-        binding.heroesRecyclerView.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-            adapter = heroesAdapter
-        }
     }
 }

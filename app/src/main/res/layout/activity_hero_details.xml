@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".heroDetails.HeroDetailsActivity">
+
+    <data>
+
+        <variable
+            name="hero"
+            type="com.example.androidchallenge.model.heroes.Hero" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/includedToolbar"
+            layout="@layout/common_toolbar" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/heroImage"
+                    imageThumbnail="@{hero.thumbnail}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/heroDescription"
+                    style="@style/textTypeRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/heroDetailMargin"
+                    android:layout_marginTop="24dp"
+                    android:text="@{hero.description}"
+                    android:textColor="@color/description"
+                    android:textSize="@dimen/textSmall"
+                    tools:text="Description" />
+
+                <TextView
+                    android:id="@+id/comicsInWhichAppears"
+                    style="@style/textTypeCondensed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="44dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/comicsInWhichAppears"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textTitle" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/comicsRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:nestedScrollingEnabled="false" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

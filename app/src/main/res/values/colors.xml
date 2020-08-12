@@ -7,4 +7,6 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="background">#ECEFF1</color>
+    <color name="description">#222053</color>
+    <color name="separator">#E3E3E3</color>
 </resources>

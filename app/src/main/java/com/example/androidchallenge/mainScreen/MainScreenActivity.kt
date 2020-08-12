@@ -13,6 +13,7 @@ import com.example.androidchallenge.events.EventsFragment
 import com.example.androidchallenge.R
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_main_screen.*
+import kotlinx.android.synthetic.main.common_toolbar.view.*
 
 class MainScreenActivity : AppCompatActivity() {
 
@@ -23,14 +24,7 @@ class MainScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_screen)
 
-        setupToolbar()
         setupPageAdapter()
-    }
-
-    private fun setupToolbar() {
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbar.background = ColorDrawable(ContextCompat.getColor(this, R.color.toolbar));
     }
 
     private fun setupPageAdapter() {
