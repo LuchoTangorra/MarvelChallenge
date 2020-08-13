@@ -7,4 +7,7 @@ object Constants {
 
     //Intent extras keys
     val hero = "HERO"
+
+    //API Requests
+    const val heroesOffset = 15
 }

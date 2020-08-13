@@ -13,8 +13,8 @@ class MarvelRepository(
 ) {
     private val authParams = AuthParams(marvelPublicAPIkey, 1, Utils.generateHash())
 
-    suspend fun getHeroes(limit: Int = 15): NetResult<HeroesResponse> =
-        handleResult(marvelAPI.getHeroes(authParams.getMap(), limit))
+    suspend fun getHeroes(offset: Int, limit: Int = 15): NetResult<HeroesResponse> =
+        handleResult(marvelAPI.getHeroes(authParams.getMap(), offset, limit))
 
     suspend fun getComics(characterId: Int): NetResult<ComicsResponse> =
         handleResult(marvelAPI.getComics(characterId, authParams.getMap()))

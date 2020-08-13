@@ -16,6 +16,7 @@ import com.example.androidchallenge.databinding.FragmentHeroesBinding
 import com.example.androidchallenge.heroes.dataSource.HeroesViewModel
 import com.example.androidchallenge.heroDetails.HeroDetailsActivity
 import com.example.androidchallenge.utils.Constants
+import com.example.androidchallenge.utils.Constants.heroesOffset
 import com.example.androidchallenge.utils.Utils
 import com.example.androidchallenge.utils.decorators.MarginItemDecoration
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -42,10 +43,22 @@ class HeroesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupHeroes()
+        setupRecycler()
+        setupListener()
     }
 
-    private fun setupHeroes() {
+    private fun setupListener() {
+        binding.heroesRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (!recyclerView.canScrollVertically(1)) {
+                    setupHeroes(heroesOffset)
+                }
+            }
+        })
+    }
+
+    private fun setupRecycler() {
         binding.heroesRecyclerView.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
@@ -63,10 +76,20 @@ class HeroesFragment : Fragment() {
             i.putExtra(Constants.hero, Utils.serializeToJson(it))
             startActivity(i)
         }
-        viewModel.getHeroes()
+        setupHeroes()
+    }
+
+    private fun setupHeroes(offset: Int = 0) {
+        viewModel.getHeroes(offset)
         Utils.createLoadingScreen(requireActivity())
         viewModel.heroes.observe(requireActivity(), Observer {
-            heroesAdapter.update(it.heroes)
+            val filteredHeroes = it.heroes.filter { !viewModel.heroesId.contains(it.id) }
+            if (filteredHeroes.isNotEmpty()) {
+                heroesAdapter.addAll(filteredHeroes)
+                filteredHeroes.forEach {
+                    viewModel.heroesId.add(it.id)
+                }
+            }
             Utils.removeLoadingScreen(requireActivity())
         })
     }

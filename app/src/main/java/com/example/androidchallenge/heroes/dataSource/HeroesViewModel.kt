@@ -10,12 +10,14 @@ import kotlinx.coroutines.launch
 
 class HeroesViewModel(private val marvelRepository: MarvelRepository) : ViewModel() {
 
+    val heroesId = ArrayList<Int>()
+
     private val _heroes = MutableLiveData<HeroesList>()
     val heroes get() = _heroes
 
-    fun getHeroes() {
+    fun getHeroes(offset: Int) {
         viewModelScope.launch {
-            when (val response = marvelRepository.getHeroes()) {
+            when (val response = marvelRepository.getHeroes(offset)) {
                 is NetResult.Success -> {
                     _heroes.postValue(response.data.heroesList)
                 }
