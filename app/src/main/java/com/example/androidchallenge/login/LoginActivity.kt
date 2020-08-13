@@ -18,7 +18,10 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+    }
 
+    override fun onResume() {
+        super.onResume()
         startAuth()
     }
 
@@ -33,6 +36,7 @@ class LoginActivity : AppCompatActivity() {
                 AuthUI.getInstance()
                     .createSignInIntentBuilder()
                     .setAvailableProviders(providers)
+                    .setTheme(R.style.AppTheme)
                     .build(),
                 RC_SIGN_IN
             )

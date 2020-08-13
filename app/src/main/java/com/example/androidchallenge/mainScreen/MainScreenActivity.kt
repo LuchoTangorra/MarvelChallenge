@@ -1,27 +1,40 @@
 package com.example.androidchallenge.mainScreen
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.example.androidchallenge.heroes.HeroesFragment
-import com.example.androidchallenge.events.EventsFragment
 import com.example.androidchallenge.R
+import com.example.androidchallenge.events.EventsFragment
+import com.example.androidchallenge.heroes.HeroesFragment
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main_screen.*
 
 class MainScreenActivity : AppCompatActivity() {
 
-    val heroesIcons = ArrayList<Int>(listOf(R.drawable.ic_superhero, R.drawable.ic_superhero_colored))
-    val eventsIcons = ArrayList<Int>(listOf(R.drawable.ic_superhero, R.drawable.ic_superhero_colored))
+    val heroesIcons =
+        ArrayList<Int>(listOf(R.drawable.ic_superhero, R.drawable.ic_superhero_colored))
+    val eventsIcons =
+        ArrayList<Int>(listOf(R.drawable.ic_superhero, R.drawable.ic_superhero_colored))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_screen)
 
         setupPageAdapter()
+    }
+
+    override fun onBackPressed() {
+
+        val homeIntent = Intent(Intent.ACTION_MAIN)
+        homeIntent.addCategory(Intent.CATEGORY_HOME)
+        homeIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(homeIntent)
+        super.onBackPressed()
     }
 
     private fun setupPageAdapter() {

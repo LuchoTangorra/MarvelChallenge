@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.androidchallenge.dataSource.NetResult
 import com.example.androidchallenge.heroes.dataSource.MarvelRepository
 import com.example.androidchallenge.model.comics.ComicsList
+import com.example.androidchallenge.model.comics.ComicsResponse
 import com.example.androidchallenge.model.heroes.Hero
 import kotlinx.coroutines.launch
 
@@ -23,6 +24,7 @@ class ComicsViewModel(private val marvelRepository: MarvelRepository): ViewModel
                     _comics.postValue(response.data.comicsList)
                 }
                 is NetResult.Error -> {
+                    _comics.postValue(ComicsList())
                 }
             }
         }
