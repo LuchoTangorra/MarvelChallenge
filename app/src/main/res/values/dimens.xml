@@ -7,6 +7,7 @@
     <dimen name="recyclerMargin">8dp</dimen>
 
     <dimen name="heroDetailMargin">52dp</dimen>
+    <dimen name="comicAppearancesMargin">16dp</dimen>
 
     <dimen name="textSmall">14sp</dimen>
     <dimen name="textMedium">16sp</dimen>

@@ -65,7 +65,7 @@ class HeroesFragment : Fragment() {
         }
         viewModel.getHeroes()
         viewModel.heroes.observe(requireActivity(), Observer {
-            heroesAdapter.update(it.data.heroes)
+            heroesAdapter.update(it.heroes)
         })
     }
 }

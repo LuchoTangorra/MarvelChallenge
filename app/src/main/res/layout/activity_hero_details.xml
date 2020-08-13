@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="hero"
-            type="com.example.androidchallenge.model.heroes.Hero" />
+            name="viewModel"
+            type="com.example.androidchallenge.heroDetails.dataSource.ComicsViewModel" />
     </data>
 
     <LinearLayout
@@ -30,7 +30,7 @@
 
                 <ImageView
                     android:id="@+id/heroImage"
-                    imageThumbnail="@{hero.thumbnail}"
+                    imageThumbnail="@{viewModel.hero.thumbnail}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
@@ -39,11 +39,12 @@
                 <TextView
                     android:id="@+id/heroDescription"
                     style="@style/textTypeRegular"
+                    isVisibileIfNotEmpty="@{viewModel.hero.description}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/heroDetailMargin"
                     android:layout_marginTop="24dp"
-                    android:text="@{hero.description}"
+                    android:text="@{viewModel.hero.description}"
                     android:textColor="@color/description"
                     android:textSize="@dimen/textSmall"
                     tools:text="Description" />
@@ -51,6 +52,7 @@
                 <TextView
                     android:id="@+id/comicsInWhichAppears"
                     style="@style/textTypeCondensed"
+                    setVisibleIfHasElements="@{viewModel.comics.comics}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"

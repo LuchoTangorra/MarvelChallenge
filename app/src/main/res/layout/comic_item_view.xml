@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="comic"
-            type="com.example.androidchallenge.model.heroes.Appearance" />
+            type="com.example.androidchallenge.model.comics.Comic" />
     </data>
 
     <LinearLayout
@@ -19,10 +18,10 @@
             style="@style/textTypeRegular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
+            android:layout_marginHorizontal="@dimen/comicAppearancesMargin"
             android:layout_marginTop="32dp"
+            android:text="@{comic.title}"
             android:textColor="@color/black"
-            android:text="@{comic.name}"
             android:textSize="@dimen/textMedium"
             tools:text="Iron Man (1948) #55" />
 
@@ -30,18 +29,18 @@
             style="@style/textTypeRegular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
+            android:layout_marginHorizontal="@dimen/comicAppearancesMargin"
             android:layout_marginTop="8dp"
-            android:text="1997"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="16dp"
+            android:text="@{comic.year}"
+            android:textSize="@dimen/textSmall"
             tools:text="1997" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginHorizontal="16dp"
-            android:background="@color/separator"/>
-
+            android:layout_marginHorizontal="@dimen/comicAppearancesMargin"
+            android:background="@color/separator" />
     </LinearLayout>
 
 </layout>
