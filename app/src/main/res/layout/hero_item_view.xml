@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="hero"
             type="com.example.androidchallenge.model.heroes.Hero" />

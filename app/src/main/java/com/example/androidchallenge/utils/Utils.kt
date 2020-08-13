@@ -1,6 +1,7 @@
 package com.example.androidchallenge.utils
 
 import android.app.Activity
+import android.os.CountDownTimer
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -34,6 +35,7 @@ object Utils {
     }
 
     fun createLoadingScreen(activity: Activity) {
+        removeLoadingScreen(activity)
         val container = LinearLayout(activity)
         container.layoutParams = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
@@ -41,6 +43,8 @@ object Utils {
         )
         container.setBackgroundColor(activity.getColor(R.color.backgroundLoadingScreen))
         container.gravity = Gravity.CENTER
+        container.isClickable = true
+        container.isFocusable = true
 
         val progress = ProgressBar(activity)
         progress.isIndeterminate = true
@@ -55,6 +59,7 @@ object Utils {
             loadingScreen?.let { loadingScreen ->
                 activity.window.decorView.findViewById<ViewGroup>(android.R.id.content)
                     .removeView(loadingScreen)
+                Utils.loadingScreen = null
             }
         }
     }
