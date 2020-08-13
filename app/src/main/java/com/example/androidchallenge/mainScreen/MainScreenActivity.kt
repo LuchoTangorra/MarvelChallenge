@@ -1,9 +1,7 @@
 package com.example.androidchallenge.mainScreen
 
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -13,7 +11,6 @@ import com.example.androidchallenge.events.EventsFragment
 import com.example.androidchallenge.R
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_main_screen.*
-import kotlinx.android.synthetic.main.common_toolbar.view.*
 
 class MainScreenActivity : AppCompatActivity() {
 

@@ -9,4 +9,6 @@
     <color name="background">#ECEFF1</color>
     <color name="description">#222053</color>
     <color name="separator">#E3E3E3</color>
+    <color name="backgroundLoadingScreen">#CC000000</color>
+
 </resources>

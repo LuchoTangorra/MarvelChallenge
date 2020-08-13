@@ -46,6 +46,8 @@ class HeroDetailsActivity : AppCompatActivity() {
             adapter = comicsAdapter
         }
 
+        viewModel.getComics(viewModel.hero.id)
+        Utils.createLoadingScreen(this)
         viewModel.comics.observe(this, Observer {
             var comicList: List<Comic> = it.comics
             comicList.map { it.year = getDate(it.dates) }
@@ -53,8 +55,8 @@ class HeroDetailsActivity : AppCompatActivity() {
             comicList = comicList.sortedBy { it.year.toInt() }
 
             comicsAdapter.update(comicList)
+            Utils.removeLoadingScreen(this)
         })
-        viewModel.getComics(viewModel.hero.id)
     }
 
     private fun getDate(dates: List<ComicDate>): String {

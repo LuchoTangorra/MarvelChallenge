@@ -64,8 +64,10 @@ class HeroesFragment : Fragment() {
             startActivity(i)
         }
         viewModel.getHeroes()
+        Utils.createLoadingScreen(requireActivity())
         viewModel.heroes.observe(requireActivity(), Observer {
             heroesAdapter.update(it.heroes)
+            Utils.removeLoadingScreen(requireActivity())
         })
     }
 }
