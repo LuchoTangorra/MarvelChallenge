@@ -1,8 +1,6 @@
-package com.example.androidchallenge.model.comics
+package com.example.androidchallenge.model
 
 import com.google.gson.annotations.SerializedName
-import java.time.Year
-import java.util.*
 
 data class ComicsResponse(
     val code: Int = 0,
@@ -12,7 +10,7 @@ data class ComicsResponse(
 
 data class ComicsList(
     @SerializedName("results")
-    val comics: List<Comic> = listOf()
+    var comics: List<Comic> = listOf()
 )
 
 data class Comic(

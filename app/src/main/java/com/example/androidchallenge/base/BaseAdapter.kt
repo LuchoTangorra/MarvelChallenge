@@ -26,7 +26,6 @@ abstract class BaseAdapter<T, VH : RecyclerView.ViewHolder>() : RecyclerView.Ada
         if (notify) {
             val position = _list.indexOf(item)
             notifyItemInserted(position)
-            notifyDataSetChanged()
         }
     }
 
@@ -39,12 +38,20 @@ abstract class BaseAdapter<T, VH : RecyclerView.ViewHolder>() : RecyclerView.Ada
     fun remove(position: Int) {
         _list.removeAt(position)
         notifyItemRemoved(position)
-        notifyDataSetChanged()
     }
 
     fun clear(notify: Boolean = true) {
         _list.clear()
         if (notify) notifyDataSetChanged()
+    }
+
+    fun updatedItems(items: Collection<T>, notify: Boolean = true) {
+        list.forEachIndexed { i, element ->
+            items.forEach { item ->
+                if (element == item)
+                    notifyItemChanged(i)
+            }
+        }
     }
 
     override fun getItemCount() = list.size

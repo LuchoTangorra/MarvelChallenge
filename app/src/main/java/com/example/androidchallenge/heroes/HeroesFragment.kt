@@ -15,7 +15,6 @@ import com.example.androidchallenge.adapters.HeroesAdapter
 import com.example.androidchallenge.databinding.FragmentHeroesBinding
 import com.example.androidchallenge.heroes.dataSource.HeroesViewModel
 import com.example.androidchallenge.heroDetails.HeroDetailsActivity
-import com.example.androidchallenge.model.heroes.HeroesList
 import com.example.androidchallenge.utils.Constants
 import com.example.androidchallenge.utils.Utils
 import com.example.androidchallenge.utils.decorators.MarginItemDecoration
@@ -77,7 +76,10 @@ class HeroesFragment : Fragment() {
             startActivity(i)
         }
         viewModel.heroes.observe(viewLifecycleOwner, Observer {
-            heroesAdapter.addAll(it.heroes)
+            it.heroes.forEach { hero ->
+                //We need to refresh only the new elements, not the whole list
+                heroesAdapter.add(hero)
+            }
             Utils.removeLoadingScreen(requireActivity())
         })
 

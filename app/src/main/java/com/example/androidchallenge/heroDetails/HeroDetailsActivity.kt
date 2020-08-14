@@ -9,9 +9,8 @@ import com.example.androidchallenge.adapters.ComicsAdapter
 import com.example.androidchallenge.binding.setIsVisible
 import com.example.androidchallenge.databinding.ActivityHeroDetailsBinding
 import com.example.androidchallenge.heroDetails.dataSource.ComicsViewModel
-import com.example.androidchallenge.model.comics.Comic
-import com.example.androidchallenge.model.comics.ComicDate
-import com.example.androidchallenge.model.heroes.Hero
+import com.example.androidchallenge.model.ComicDate
+import com.example.androidchallenge.model.Hero
 import com.example.androidchallenge.utils.Constants
 import com.example.androidchallenge.utils.Utils
 import kotlinx.android.synthetic.main.common_toolbar.*
@@ -47,28 +46,11 @@ class HeroDetailsActivity : AppCompatActivity() {
         }
 
         viewModel.getComics(viewModel.hero.id)
-        Utils.createLoadingScreen(this)
         viewModel.comics.observe(this, Observer {
-            var comicList: List<Comic> = it.comics
-            comicList.map { it.year = getDate(it.dates) }
-            comicList.filter { it.year != "" }
-            comicList = comicList.sortedBy { it.year.toInt() }
+            it.comics.map { it.year = Utils.getYear(it.dates) }
 
-            comicsAdapter.update(comicList)
-            Utils.removeLoadingScreen(this)
+            comicsAdapter.update(it.comics.filter { it.year.toInt() > 1900 })
         })
-    }
-
-    private fun getDate(dates: List<ComicDate>): String {
-        dates.forEach {
-            if (it.type == "onsaleDate") {
-                try {
-                    return (it.date.subSequence(0, 4).toString().toInt()).toString()
-                } catch (e: Exception) {
-                }
-            }
-        }
-        return ""
     }
 
     private fun setupToolbar() {

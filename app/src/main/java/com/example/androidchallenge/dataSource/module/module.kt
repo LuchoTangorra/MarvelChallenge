@@ -2,6 +2,7 @@ package com.example.androidchallenge.dataSource.module
 
 import com.example.androidchallenge.heroes.dataSource.HeroesViewModel
 import com.example.androidchallenge.dataSource.api.MarvelAPI
+import com.example.androidchallenge.events.dataSource.EventsViewModel
 import com.example.androidchallenge.heroDetails.dataSource.ComicsViewModel
 import com.example.androidchallenge.heroes.dataSource.MarvelRepository
 import com.example.androidchallenge.utils.Constants.marvelAPIurl
@@ -15,6 +16,7 @@ val appModules = module {
 
     viewModel { HeroesViewModel(get()) }
     viewModel { ComicsViewModel(get()) }
+    viewModel { EventsViewModel(get()) }
 
     single { provideHttpClient() }
     single { provideRetrofit(get()) }

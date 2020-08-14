@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="event"
+            type="com.example.androidchallenge.model.Event" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/itemLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_shape_background"
+        android:minHeight="@dimen/heroRecyclerImageSize"
+        app:cardCornerRadius="4dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/centerCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="18dp"
+                android:background="@android:color/transparent"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/eventImage"
+                        imageThumbnail="@{event.thumbnail}"
+                        android:layout_width="@dimen/heroRecyclerImageSizeSmall"
+                        android:layout_height="@dimen/heroRecyclerImageSizeSmall"
+                        android:background="@drawable/rounded_shape_background"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/eventDataLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@id/eventImage"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/eventTitle"
+                            style="@style/HeroTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="@{event.title}"
+                            app:layout_constraintEnd_toStartOf="@id/showingComicsImageView"
+                            app:layout_constraintHorizontal_bias="0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Title" />
+
+                        <TextView
+                            android:id="@+id/eventStartDate"
+                            style="@style/textTypeRegular"
+                            setDate="@{event.start}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:maxLines="1"
+                            android:textColor="@color/description"
+                            android:textSize="@dimen/textSmall"
+                            app:layout_constraintEnd_toStartOf="@id/showingComicsImageView"
+                            app:layout_constraintHorizontal_bias="0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/eventTitle"
+                            tools:text="9 de Agosto 2020" />
+
+                        <TextView
+                            android:id="@+id/eventEndDate"
+                            style="@style/textTypeRegular"
+                            setDate="@{event.end}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:maxLines="1"
+                            android:textColor="@color/description"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/showingComicsImageView"
+                            app:layout_constraintHorizontal_bias="0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/eventStartDate"
+                            tools:text="10 de Agosto 2020" />
+
+                        <ImageView
+                            android:id="@+id/showingComicsImageView"
+                            modifiyArrowDirection="@{event.showingComics}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="24dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/comicsToDebateTextView"
+                style="@style/textTypeCondensed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center_horizontal"
+                android:isVisible="@{event.showingComics}"
+                android:text="@{event.comics.comics.size() > 0 ? @string/comicsToDebate : @string/noComicsToDebate}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textTitle" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/comicsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:isVisible="@{event.showingComics}"
+                android:nestedScrollingEnabled="false" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -16,7 +16,6 @@
         <item name="android:background">@color/toolbar</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?android:attr/actionBarSize</item>
-
     </style>
 
     <style name="textTypeRegular">

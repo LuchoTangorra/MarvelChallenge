@@ -7,4 +7,8 @@ object Constants {
 
     //Intent extras keys
     val hero = "HERO"
+
+    //Comics date
+    val comicsDateUsage = "onsaleDate"
+    val eventsStartDate = "startDate"
 }

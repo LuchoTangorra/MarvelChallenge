@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.androidchallenge.R
 import com.example.androidchallenge.base.BaseAdapter
 import com.example.androidchallenge.databinding.ComicItemViewBinding
-import com.example.androidchallenge.model.comics.Comic
+import com.example.androidchallenge.model.Comic
 
 class ComicsAdapter : BaseAdapter<Comic, ComicsViewHolder>() {
 

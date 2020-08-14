@@ -4,6 +4,7 @@
     <dimen name="heroRecyclerTitle">24sp</dimen>
     <dimen name="heroRecyclerDescription">24sp</dimen>
     <dimen name="heroRecyclerImageSize">120dp</dimen>
+    <dimen name="heroRecyclerImageSizeSmall">86dp</dimen>
     <dimen name="recyclerMargin">8dp</dimen>
 
     <dimen name="heroDetailMargin">52dp</dimen>

@@ -29,7 +29,6 @@ class MainScreenActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-
         val homeIntent = Intent(Intent.ACTION_MAIN)
         homeIntent.addCategory(Intent.CATEGORY_HOME)
         homeIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP

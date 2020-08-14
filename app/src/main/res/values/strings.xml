@@ -9,5 +9,9 @@
     <string name="marvelChallenge">Marvel Challenge</string>
 
     <string name="comicsInWhichAppears">COMICS EN LOS QUE APARECE</string>
+    <string name="comicsToDebate">COMICS A DISCUTIR</string>
+    <string name="noComicsToDebate">NO HAY COMICS A DISCUTIR</string>
+
+    <string name="define">A definir</string>
 
 </resources>

@@ -4,8 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.androidchallenge.dataSource.NetResult
-import com.example.androidchallenge.model.heroes.HeroesList
-import com.example.androidchallenge.model.heroes.HeroesResponse
+import com.example.androidchallenge.model.HeroesList
 import kotlinx.coroutines.launch
 
 class HeroesViewModel(private val marvelRepository: MarvelRepository) : ViewModel() {
@@ -15,8 +14,7 @@ class HeroesViewModel(private val marvelRepository: MarvelRepository) : ViewMode
 
     fun getHeroes(offset: Int) {
         viewModelScope.launch {
-            val response = marvelRepository.getHeroes(offset)
-            when (response) {
+            when (val response = marvelRepository.getHeroes(offset)) {
                 is NetResult.Success -> {
                     _heroes.postValue(response.data.heroesList)
                 }

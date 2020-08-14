@@ -1,4 +1,4 @@
-package com.example.androidchallenge.model.heroes
+package com.example.androidchallenge.model
 
 import com.google.gson.annotations.SerializedName
 

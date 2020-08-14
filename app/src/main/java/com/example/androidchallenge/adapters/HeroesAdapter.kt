@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidchallenge.base.BaseAdapter
-import com.example.androidchallenge.model.heroes.Hero
+import com.example.androidchallenge.model.Hero
 import com.example.androidchallenge.R
 import com.example.androidchallenge.databinding.HeroItemViewBinding
 

@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidchallenge.mainScreen.MainScreenActivity
 import com.example.androidchallenge.R
+import com.example.androidchallenge.utils.Utils
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 
