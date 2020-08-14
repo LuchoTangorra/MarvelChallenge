@@ -31,7 +31,6 @@ class EventsFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_events, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewModel = viewModel
         return binding.root
     }
 
@@ -54,12 +53,23 @@ class EventsFragment : Fragment() {
 
             adapter = eventsAdapter
         }
-        eventsAdapter.onClickListener = { event ->
-            eventsAdapter.updatedItems(changeExpandedEvent(event))
+        eventsAdapter.onClickListener = { clickedEvent ->
+            eventsAdapter.updatedItems(changeExpandedEvent(clickedEvent))
+            var scrollToPositionEnabled = true
+            eventsAdapter.postFillRecycler = { showingComicsEvent ->
+                if (scrollToPositionEnabled) {
+                    scrollToPositionEnabled = false
+                    binding.eventsRecyclerView.scrollToPosition(
+                        eventsAdapter.list.indexOf(
+                            showingComicsEvent
+                        )
+                    )
+                }
+            }
         }
 
         viewModel.events.observe(viewLifecycleOwner, Observer {
-            eventsAdapter.addAll(it.events)
+            eventsAdapter.update(it.events)
             Utils.removeLoadingScreen(requireActivity())
         })
 
