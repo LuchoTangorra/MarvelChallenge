@@ -55,9 +55,8 @@ class EventsViewModel(private val marvelRepository: MarvelRepository) : ViewMode
 
     private fun getEvent(events: List<Event>, eventId: Int): Event {
         events.forEach { event ->
-            if (event.id == eventId) {
+            if (event.id == eventId)
                 return event
-            }
         }
         return Event()
     }

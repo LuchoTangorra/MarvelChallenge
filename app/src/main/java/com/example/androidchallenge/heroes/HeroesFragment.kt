@@ -5,26 +5,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidchallenge.R
 import com.example.androidchallenge.adapters.HeroesAdapter
-import com.example.androidchallenge.databinding.FragmentHeroesBinding
 import com.example.androidchallenge.heroes.dataSource.HeroesViewModel
 import com.example.androidchallenge.heroDetails.HeroDetailsActivity
 import com.example.androidchallenge.utils.Constants
 import com.example.androidchallenge.utils.Utils
 import com.example.androidchallenge.utils.decorators.MarginItemDecoration
+import kotlinx.android.synthetic.main.fragment_heroes.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class HeroesFragment : Fragment() {
 
     private val viewModel: HeroesViewModel by viewModel()
-    private lateinit var binding: FragmentHeroesBinding
     private val heroesAdapter = HeroesAdapter()
 
     override fun onCreateView(
@@ -33,10 +31,7 @@ class HeroesFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_heroes, container, false)
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewModel = viewModel
-        return binding.root
+        return inflater.inflate(R.layout.fragment_heroes, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,8 +41,12 @@ class HeroesFragment : Fragment() {
         setupListener()
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
     private fun setupListener() {
-        binding.heroesRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        heroesRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (!recyclerView.canScrollVertically(1)) {
@@ -58,7 +57,7 @@ class HeroesFragment : Fragment() {
     }
 
     private fun setupRecycler() {
-        binding.heroesRecyclerView.apply {
+        heroesRecyclerView.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
 
@@ -80,14 +79,20 @@ class HeroesFragment : Fragment() {
                 //We need to refresh only the new elements, not the whole list
                 heroesAdapter.add(hero)
             }
-            Utils.removeLoadingScreen(requireActivity())
+            Utils.changeMainScreenLoadingState(requireActivity(), false)
+            //Utils.removeLoadingScreen(requireActivity())
         })
 
         getHeroes()
     }
 
     private fun getHeroes(offset: Int = 0) {
-        viewModel.getHeroes(offset)
-        Utils.createLoadingScreen(requireActivity())
+        if (!Utils.loadingStateVisible) {
+            heroesRecyclerView.post {
+                viewModel.getHeroes(offset)
+            }
+            Utils.changeMainScreenLoadingState(requireActivity(), true)
+        }
+        //Utils.createLoadingScreen(requireActivity())
     }
 }

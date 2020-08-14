@@ -16,9 +16,9 @@ import kotlinx.android.synthetic.main.activity_main_screen.*
 
 class MainScreenActivity : AppCompatActivity() {
 
-    val heroesIcons =
+    private val heroesIcons =
         ArrayList<Int>(listOf(R.drawable.ic_superhero, R.drawable.ic_superhero_colored))
-    val eventsIcons =
+    private val eventsIcons =
         ArrayList<Int>(listOf(R.drawable.ic_superhero, R.drawable.ic_superhero_colored))
 
     override fun onCreate(savedInstanceState: Bundle?) {

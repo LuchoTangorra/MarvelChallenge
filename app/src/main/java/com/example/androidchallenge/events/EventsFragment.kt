@@ -5,23 +5,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidchallenge.R
 import com.example.androidchallenge.adapters.EventsAdapter
-import com.example.androidchallenge.databinding.FragmentEventsBinding
+import com.example.androidchallenge.binding.setIsVisible
 import com.example.androidchallenge.events.dataSource.EventsViewModel
+import com.example.androidchallenge.mainScreen.MainScreenActivity
 import com.example.androidchallenge.model.Event
 import com.example.androidchallenge.utils.Utils
 import com.example.androidchallenge.utils.decorators.MarginItemDecoration
+import kotlinx.android.synthetic.main.activity_main_screen.*
+import kotlinx.android.synthetic.main.fragment_events.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class EventsFragment : Fragment() {
 
     private val viewModel: EventsViewModel by viewModel()
-    private lateinit var binding: FragmentEventsBinding
     private val eventsAdapter = EventsAdapter()
 
     override fun onCreateView(
@@ -29,9 +30,8 @@ class EventsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_events, container, false)
-        binding.lifecycleOwner = viewLifecycleOwner
-        return binding.root
+
+        return inflater.inflate(R.layout.fragment_events, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,7 +41,7 @@ class EventsFragment : Fragment() {
     }
 
     private fun setupRecycler() {
-        binding.eventsRecyclerView.apply {
+        eventsRecyclerView.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
 
@@ -59,7 +59,7 @@ class EventsFragment : Fragment() {
             eventsAdapter.postFillRecycler = { showingComicsEvent ->
                 if (scrollToPositionEnabled) {
                     scrollToPositionEnabled = false
-                    binding.eventsRecyclerView.scrollToPosition(
+                    eventsRecyclerView.scrollToPosition(
                         eventsAdapter.list.indexOf(
                             showingComicsEvent
                         )
@@ -70,7 +70,9 @@ class EventsFragment : Fragment() {
 
         viewModel.events.observe(viewLifecycleOwner, Observer {
             eventsAdapter.update(it.events)
-            Utils.removeLoadingScreen(requireActivity())
+
+            Utils.changeMainScreenLoadingState(requireActivity(), false)
+            //Utils.removeLoadingScreen(requireActivity())
         })
 
         getEvents()
@@ -93,6 +95,8 @@ class EventsFragment : Fragment() {
 
     private fun getEvents() {
         viewModel.getEvents()
-        Utils.createLoadingScreen(requireActivity())
+        Utils.changeMainScreenLoadingState(requireActivity(), true)
+
+        //Utils.createLoadingScreen(requireActivity())
     }
 }

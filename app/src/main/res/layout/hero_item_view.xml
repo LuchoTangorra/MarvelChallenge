@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="hero"
             type="com.example.androidchallenge.model.Hero" />
@@ -13,10 +14,10 @@
         android:id="@+id/itemLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="4dp"
-        android:background="@drawable/rounded_shape_background">
+        android:background="@drawable/rounded_shape_background"
+        app:cardCornerRadius="4dp">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -26,39 +27,48 @@
                 imageThumbnail="@{hero.thumbnail}"
                 android:layout_width="@dimen/heroRecyclerImageSize"
                 android:layout_height="@dimen/heroRecyclerImageSize"
-                android:background="@drawable/rounded_shape_background" />
+                android:background="@drawable/rounded_shape_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintHorizontal_bias="0.0"
+                android:layout_marginEnd="30dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/heroImage"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/heroTitle"
-                    style="@style/HeroTitle"
-                    android:layout_width="wrap_content"
+                    style="@style/ItemTitle"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="30dp"
-                    android:ellipsize="end"
-                    android:maxLines="1"
                     android:text="@{hero.name}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:text="Title" />
 
                 <TextView
                     android:id="@+id/heroDescription"
-                    android:layout_width="wrap_content"
+                    style="@style/TextTypeDescription"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
                     android:layout_marginTop="9dp"
-                    android:layout_marginEnd="30dp"
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:text="@{hero.description}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/heroTitle"
                     tools:text="Description" />
-            </LinearLayout>
-        </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 

@@ -32,10 +32,9 @@
                 android:id="@+id/centerCardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginBottom="18dp"
-                android:background="@android:color/transparent"
+                android:layout_marginStart="@dimen/insideCardViewMargin"
+                android:layout_marginTop="@dimen/insideCardViewMargin"
+                android:layout_marginBottom="@dimen/insideCardViewMargin"
                 app:cardCornerRadius="4dp"
                 app:cardElevation="0dp">
 
@@ -60,18 +59,12 @@
                         android:layout_marginStart="30dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@id/eventImage"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
                             android:id="@+id/eventTitle"
-                            style="@style/HeroTitle"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:ellipsize="end"
-                            android:maxLines="1"
+                            style="@style/ItemTitle"
                             android:text="@{event.title}"
                             app:layout_constraintEnd_toStartOf="@id/showingComicsImageView"
                             app:layout_constraintHorizontal_bias="0"
@@ -81,14 +74,12 @@
 
                         <TextView
                             android:id="@+id/eventStartDate"
-                            style="@style/textTypeRegular"
+                            style="@style/TextTypeDescription"
                             setDate="@{event.start}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="9dp"
                             android:maxLines="1"
-                            android:textColor="@color/description"
-                            android:textSize="@dimen/textSmall"
                             app:layout_constraintEnd_toStartOf="@id/showingComicsImageView"
                             app:layout_constraintHorizontal_bias="0"
                             app:layout_constraintStart_toStartOf="parent"
@@ -97,13 +88,11 @@
 
                         <TextView
                             android:id="@+id/eventEndDate"
-                            style="@style/textTypeRegular"
+                            style="@style/TextTypeDescription"
                             setDate="@{event.end}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
                             android:maxLines="1"
-                            android:textColor="@color/description"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@id/showingComicsImageView"
                             app:layout_constraintHorizontal_bias="0"
@@ -128,16 +117,10 @@
 
             <TextView
                 android:id="@+id/comicsToDebateTextView"
-                style="@style/textTypeCondensed"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
+                style="@style/TextTypeCondensedSubTitle"
                 android:layout_marginTop="20dp"
-                android:gravity="center_horizontal"
                 android:isVisible="@{event.showingComics}"
-                android:text="@{event.comics.comics.size() > 0 ? @string/comicsToDebate : @string/noComicsToDebate}"
-                android:textColor="@color/black"
-                android:textSize="@dimen/textTitle" />
+                android:text="@{event.comics.comics.size() > 0 ? @string/comicsToDebate : @string/noComicsToDebate}" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/comicsRecyclerView"

@@ -5,7 +5,6 @@
     tools:context=".heroDetails.HeroDetailsActivity">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.example.androidchallenge.heroDetails.dataSource.ComicsViewModel" />
@@ -48,11 +47,8 @@
 
                 <TextView
                     android:id="@+id/heroDescription"
-                    style="@style/textTypeRegular"
+                    style="@style/TextTypeRegular"
                     isVisibileIfNotEmpty="@{viewModel.hero.description}"
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/heroDetailMargin"
                     android:layout_marginTop="24dp"
                     android:text="@{viewModel.hero.description}"
@@ -65,16 +61,10 @@
 
                 <TextView
                     android:id="@+id/comicsInWhichAppears"
-                    style="@style/textTypeCondensed"
+                    style="@style/TextTypeCondensedSubTitle"
                     setVisibleIfHasElements="@{viewModel.comics.comics}"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="44dp"
-                    android:gravity="center_horizontal"
                     android:text="@string/comicsInWhichAppears"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/textTitle"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/heroDescription" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <dimen name="heroRecyclerTitle">24sp</dimen>
+    <dimen name="Title">24sp</dimen>
     <dimen name="heroRecyclerDescription">24sp</dimen>
     <dimen name="heroRecyclerImageSize">120dp</dimen>
     <dimen name="heroRecyclerImageSizeSmall">86dp</dimen>
@@ -9,6 +9,8 @@
 
     <dimen name="heroDetailMargin">52dp</dimen>
     <dimen name="comicAppearancesMargin">16dp</dimen>
+
+    <dimen name="insideCardViewMargin">18dp</dimen>
 
     <dimen name="textSmall">14sp</dimen>
     <dimen name="textMedium">16sp</dimen>

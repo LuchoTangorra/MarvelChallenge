@@ -18,25 +18,50 @@
         <item name="android:layout_height">?android:attr/actionBarSize</item>
     </style>
 
-    <style name="textTypeRegular">
+    <style name="Text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="TextTypeRegular" parent="Text">
         <item name="fontFamily">sans-serif</item>
     </style>
 
-    <style name="textTypeCondensed">
+    <style name="TextTypeDescription" parent="TextTypeRegular">
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/description</item>
+        <item name="android:textSize">@dimen/textSmall</item>
+    </style>
+
+
+    <style name="TextTypeCondensed" parent="Text">
         <item name="fontFamily">sans-serif-condensed</item>
     </style>
 
-    <style name="ToolbarTitle" parent="textTypeCondensed">
+    <style name="TextTypeCondensedSubTitle" parent="TextTypeCondensed">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/textTitle</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_marginHorizontal">20dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ToolbarTitle" parent="TextTypeCondensed">
         <item name="android:layout_gravity">center</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/textTitle</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="HeroTitle" parent="textTypeCondensed">
+    <style name="ItemTitle" parent="TextTypeCondensed">
         <item name="android:layout_gravity">left</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">@dimen/heroRecyclerTitle</item>
+        <item name="android:textSize">@dimen/Title</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
 </resources>

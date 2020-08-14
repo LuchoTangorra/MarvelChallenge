@@ -45,7 +45,7 @@ abstract class BaseAdapter<T, VH : RecyclerView.ViewHolder>() : RecyclerView.Ada
         if (notify) notifyDataSetChanged()
     }
 
-    fun updatedItems(items: Collection<T>, notify: Boolean = true) {
+    fun updatedItems(items: Collection<T>) {
         list.forEachIndexed { i, element ->
             items.forEach { item ->
                 if (element == item)

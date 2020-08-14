@@ -9,14 +9,12 @@ import com.example.androidchallenge.adapters.ComicsAdapter
 import com.example.androidchallenge.binding.setIsVisible
 import com.example.androidchallenge.databinding.ActivityHeroDetailsBinding
 import com.example.androidchallenge.heroDetails.dataSource.ComicsViewModel
-import com.example.androidchallenge.model.ComicDate
 import com.example.androidchallenge.model.Hero
 import com.example.androidchallenge.utils.Constants
 import com.example.androidchallenge.utils.Utils
 import kotlinx.android.synthetic.main.common_toolbar.*
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.lang.Exception
 
 class HeroDetailsActivity : AppCompatActivity() {
 
