@@ -24,8 +24,6 @@ import java.security.MessageDigest
 object Utils {
 
     private var loadingScreen: ViewGroup? = null
-    private var loadingStateCount: Int = 0
-    var loadingStateVisible: Boolean = false
 
     fun generateHash(): String = MessageDigest.getInstance("MD5")
         .digest(("1${Constants.marvelPrivateAPIkey}${Constants.marvelPublicAPIkey}").toByteArray())
@@ -100,16 +98,5 @@ object Utils {
             }
         }
         return "0"
-    }
-
-    fun changeMainScreenLoadingState(activity: Activity, state: Boolean) {
-        if (state)
-            loadingStateCount++
-        else
-            loadingStateCount--
-        loadingStateVisible = loadingStateCount > 0
-        try {
-            (activity as MainScreenActivity).progressBar.setIsVisible(loadingStateVisible)
-        } catch (e: Exception) {}
     }
 }

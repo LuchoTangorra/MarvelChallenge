@@ -13,11 +13,13 @@ import com.example.androidchallenge.R
 import com.example.androidchallenge.adapters.HeroesAdapter
 import com.example.androidchallenge.heroes.dataSource.HeroesViewModel
 import com.example.androidchallenge.heroDetails.HeroDetailsActivity
+import com.example.androidchallenge.mainScreen.MainScreenActivity
 import com.example.androidchallenge.utils.Constants
 import com.example.androidchallenge.utils.Utils
 import com.example.androidchallenge.utils.decorators.MarginItemDecoration
 import kotlinx.android.synthetic.main.fragment_heroes.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.lang.Exception
 
 
 class HeroesFragment : Fragment() {
@@ -79,7 +81,7 @@ class HeroesFragment : Fragment() {
                 //We need to refresh only the new elements, not the whole list
                 heroesAdapter.add(hero)
             }
-            Utils.changeMainScreenLoadingState(requireActivity(), false)
+            changeLoadingState(false)
             //Utils.removeLoadingScreen(requireActivity())
         })
 
@@ -87,12 +89,29 @@ class HeroesFragment : Fragment() {
     }
 
     private fun getHeroes(offset: Int = 0) {
-        if (!Utils.loadingStateVisible) {
+        if (!getLoadingState()) {
             heroesRecyclerView.post {
                 viewModel.getHeroes(offset)
             }
-            Utils.changeMainScreenLoadingState(requireActivity(), true)
+            changeLoadingState(true)
         }
         //Utils.createLoadingScreen(requireActivity())
     }
+
+    private fun changeLoadingState(loading: Boolean) {
+        try {
+            (activity as MainScreenActivity).changeMainScreenLoadingState(loading)
+        } catch (e: Exception) {
+        }
+    }
+
+    private fun getLoadingState(): Boolean {
+        var visible = false
+        try {
+            visible = (activity as MainScreenActivity).loadingStateVisible
+        } catch (e: Exception) {
+        }
+        return visible
+    }
+
 }

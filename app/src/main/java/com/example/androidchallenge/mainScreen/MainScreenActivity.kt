@@ -1,5 +1,6 @@
 package com.example.androidchallenge.mainScreen
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,11 +9,14 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.androidchallenge.R
+import com.example.androidchallenge.binding.setIsVisible
 import com.example.androidchallenge.events.EventsFragment
 import com.example.androidchallenge.heroes.HeroesFragment
+import com.example.androidchallenge.utils.Utils
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main_screen.*
+import java.lang.Exception
 
 class MainScreenActivity : AppCompatActivity() {
 
@@ -20,6 +24,9 @@ class MainScreenActivity : AppCompatActivity() {
         ArrayList<Int>(listOf(R.drawable.ic_superhero, R.drawable.ic_superhero_colored))
     private val eventsIcons =
         ArrayList<Int>(listOf(R.drawable.ic_superhero, R.drawable.ic_superhero_colored))
+
+    private var loadingStateCount: Int = 0
+    var loadingStateVisible: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +41,15 @@ class MainScreenActivity : AppCompatActivity() {
         homeIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(homeIntent)
         super.onBackPressed()
+    }
+
+    fun changeMainScreenLoadingState(state: Boolean) {
+        if (state)
+            loadingStateCount++
+        else
+            loadingStateCount--
+        loadingStateVisible = loadingStateCount > 0
+        this.progressBar.setIsVisible(loadingStateVisible)
     }
 
     private fun setupPageAdapter() {

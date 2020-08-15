@@ -19,6 +19,7 @@ import com.example.androidchallenge.utils.decorators.MarginItemDecoration
 import kotlinx.android.synthetic.main.activity_main_screen.*
 import kotlinx.android.synthetic.main.fragment_events.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.lang.Exception
 
 class EventsFragment : Fragment() {
 
@@ -71,7 +72,7 @@ class EventsFragment : Fragment() {
         viewModel.events.observe(viewLifecycleOwner, Observer {
             eventsAdapter.update(it.events)
 
-            Utils.changeMainScreenLoadingState(requireActivity(), false)
+            changeLoadingState(false)
             //Utils.removeLoadingScreen(requireActivity())
         })
 
@@ -95,8 +96,14 @@ class EventsFragment : Fragment() {
 
     private fun getEvents() {
         viewModel.getEvents()
-        Utils.changeMainScreenLoadingState(requireActivity(), true)
-
+        changeLoadingState(true)
         //Utils.createLoadingScreen(requireActivity())
+    }
+
+    private fun changeLoadingState(loading: Boolean) {
+        try {
+            (activity as MainScreenActivity).changeMainScreenLoadingState(loading)
+        } catch (e: Exception) {
+        }
     }
 }
